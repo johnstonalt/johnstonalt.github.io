@@ -1,5 +1,43 @@
-<html>
+<!DOCTYPE html>
     <body>
-        <h1>welcome to my website!!1!!!1!!</h1>
+        <div style="text-align: center; font-size: 1.2em;">
+            <div>current IP is:</div>
+            <div id="ipdiv" style="font-size: 2em; font-weight: bold;";></div>
+            
+            <br />
+
+            <div id="countdiv">loading...</div>
+            <div id="listdiv" style="font-size: 2em; font-weight: bold;";></div>
+        </div>
+
+        
+
+        <script>
+            async function doTheShit() {
+                // ip
+                var ipres = await fetch("https://raw.githubusercontent.com/johnstonalt/ip-updates/refs/heads/main/README.md");
+                var ip = await ipres.text();
+                ip = ip.replace("# ", "");
+                console.log(ip);
+                var ipdiv = document.querySelector("#ipdiv");
+                ipdiv.innerText = ip;
+
+                // mc data
+                var mcres = await fetch(`https://api.minetools.eu/ping/${ip}/25565`);
+                var mcdata = await mcres.json();
+                console.log(mcdata["players"]["sample"]);
+
+                var countdiv = document.querySelector("#countdiv");
+                var listdiv = document.querySelector("#listdiv");
+                countdiv.innerText = `there are ${mcdata["players"]["sample"].length} players online:`;
+
+                for (var i = 0; i < mcdata["players"]["sample"].length; i++) {
+                    var player = mcdata["players"]["sample"][i]["name"];
+                    listdiv.innerText += `${player}\n`;
+                }
+            }
+    
+            doTheShit();
+        </script>
     </body>
 </html>
