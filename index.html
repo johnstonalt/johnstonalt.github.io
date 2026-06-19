@@ -16,20 +16,25 @@
             
             <br />
 
-            <div id="countdiv">loading...</div>
-            <div id="listdiv" style="font-size: 2em; font-weight: bold;"></div>
+            <button onclick="redir()" style="font-size: 1em; outline: 1px solid #ABABAB; border: none; padding: 0.3em 0.6em;">see active players</button>
         </div>
 
         <script>
+            var ip;
+
             async function doTheShit() {
                 // ip
                 var ipres = await fetch("https://raw.githubusercontent.com/johnstonalt/ip-updates/refs/heads/main/README.md", { cache: "no-store" } );
-                var ip = await ipres.text();
+                ip = await ipres.text();
                 ip = ip.replace("# ", "");
                 console.log(ip);
                 var ipdiv = document.querySelector("#ipdiv");
                 ipdiv.innerText = ip;
 
+                // window.location.href = `http://${ip}:3000`;
+            }
+
+            function redir() {
                 window.location.href = `http://${ip}:3000`;
             }
  
