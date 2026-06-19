@@ -30,16 +30,7 @@
                 var ipdiv = document.querySelector("#ipdiv");
                 ipdiv.innerText = ip;
 
-
-                var okcheck = await fetch(`http://${ip}:3000/ok`, { cache: "no-store" });
-                var ok = await okcheck.text();
-
-                if (okcheck.status == 200 && ok == "ok")
-                    window.location.href = `http://${ip}:3000`;
-                else {
-                    var countdiv = document.querySelector("#countdiv");
-                    countdiv.innerHTML = "Web server is down :(";
-                }
+                window.location.href = `http://${ip}:3000`;
             }
  
             doTheShit();
