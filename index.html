@@ -16,11 +16,13 @@
             
             <br />
 
-            <button onclick="redir()" style="font-size: 1em; outline: 1px solid #ABABAB; border: none; padding: 0.3em 0.6em;">see active players</button>
+            <button id="btn" onclick="redir()" style="font-size: 1em; outline: 1px solid #ABABAB; border: none; padding: 0.3em 0.6em;">see active players</button>
         </div>
 
         <script>
             var ip;
+            var btn = document.querySelector("#btn");
+            btn.hidden = true;
 
             async function doTheShit() {
                 // ip
@@ -32,6 +34,8 @@
                 ipdiv.innerText = ip;
 
                 // window.location.href = `http://${ip}:3000`;
+            
+                btn.hidden = false; 
             }
 
             function redir() {
