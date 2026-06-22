@@ -26,7 +26,7 @@
         <script>
             var ip;
             var btns = document.querySelectorAll(".btn");
-            for (var i = 0; i < btns.length; i++) { btns[i].hidden = true; }
+            for (var i = 0; i < btns.length; i++) { btns[i].style = "display: none"; }
 
             async function doTheShit() {
                 // ip
@@ -42,7 +42,7 @@
                     var route = btns[i].getAttribute("data-route");
                     if (route) { btns[i].setAttribute("href", `http://${ip}:3000${route}`); }
 
-                    btns[i].hidden = false; 
+                    btns[i].style = "display: inline-block"; 
                 }
             }
 
